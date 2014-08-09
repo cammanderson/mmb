@@ -8,7 +8,7 @@ class MarkdownArticleFileProvider implements ArticleProviderInterface
 {
     protected $formatter;
 
-    function __construct($formatter)
+    function __construct(MarkdownFormatterInterface $formatter)
     {
         $this->formatter = $formatter;
     }

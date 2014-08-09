@@ -3,6 +3,7 @@
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
 namespace MMB;
+
 interface ArticleProviderInterface
 {
     /**

@@ -9,7 +9,7 @@ class MarkdownArticle extends Article
     protected $markdown;
     protected $formatter;
 
-    function __construct($key, $markdown, MarkdownFormatter $formatter)
+    function __construct($key, $markdown, MarkdownFormatterInterface $formatter)
     {
         $this->key = $key;
         $this->markdown = $markdown;
@@ -18,7 +18,7 @@ class MarkdownArticle extends Article
 
     public function getBody()
     {
-        return $this->formatter->getBody($this->markdown);
+        return $this->formatter->format($this->markdown);
     }
 }
  
