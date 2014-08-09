@@ -5,7 +5,8 @@
 
 namespace MMB;
 
-class FileArticleService extends ArticleService {
+class FileArticleService extends ArticleService
+{
     protected $path;
     protected $provider;
 

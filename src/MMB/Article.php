@@ -4,7 +4,8 @@
  */
 namespace MMB;
 
-abstract class Article {
+abstract class Article
+{
     protected $body;
     protected $key;
 

@@ -5,7 +5,8 @@
 
 namespace MMB;
 
-abstract class ArticleService {
+abstract class ArticleService
+{
 
     public function getArticle($key)
     {

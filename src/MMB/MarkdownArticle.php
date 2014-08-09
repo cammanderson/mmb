@@ -4,7 +4,8 @@
  */
 namespace MMB;
 
-class MarkdownArticle extends Article {
+class MarkdownArticle extends Article
+{
     protected $markdown;
     protected $formatter;
 

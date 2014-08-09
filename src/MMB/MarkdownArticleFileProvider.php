@@ -4,7 +4,8 @@
  */
 namespace MMB;
 
-class MarkdownArticleFileProvider implements ArticleProviderInterface {
+class MarkdownArticleFileProvider implements ArticleProviderInterface
+{
     protected $formatter;
 
     function __construct($formatter)

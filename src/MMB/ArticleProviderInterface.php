@@ -3,7 +3,8 @@
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
 namespace MMB;
-interface ArticleProviderInterface {
+interface ArticleProviderInterface
+{
     /**
      * @param $key
      * @param $path
