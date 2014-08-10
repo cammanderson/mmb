@@ -13,6 +13,8 @@ class PygmentsShell implements HighlighterInterface {
         'full' => 'false',
         'linenos' => 'table'
     );
+    protected $style = 'colorful';
+    protected $output = 'html';
 
     function __construct($bin = '/usr/bin/pygmentize')
     {
@@ -30,11 +32,31 @@ class PygmentsShell implements HighlighterInterface {
 
         // Set the language and desired output
         $builder->add("-l$language")
-            ->add("-fhtml");
+            ->add("-f$this->output");
 
         // Set some other options
         foreach ($this->defaultOpts as $argument => $value)
             $builder->add("-P$argument=$value");
+
+        // Run the process
+        $process = $builder->getProcess();
+        $process->run();
+
+        // Check the output
+        if (!$process->isSuccessful()) {
+            throw new \RuntimeException($process->getErrorOutput());
+        }
+
+        // Return the result
+        return $process->getOutput();
+    }
+
+    public function getStyles()
+    {
+        $builder = new ProcessBuilder();
+        $builder->setPrefix("$this->bin");
+        $builder->add("-f$this->output");
+        $builder->add("-S$this->style");
 
         // Run the process
         $process = $builder->getProcess();

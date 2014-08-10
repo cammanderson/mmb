@@ -15,7 +15,10 @@ $app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/../app/co
 $app->register(new MMB\ArticleServiceProvider());
 $app->match('/article/{key}', function ($key) use ($app) {
     try {
-        return $app['article_service']->getArticle($key)->getBody();
+        // TODO: Twig
+        $doc = '<style type="text/css">' . $app['markdown_parser_highlighter']->getStyles() . '</style>';
+        $doc .= $app['article_service']->getArticle($key)->getBody();
+        return $doc;
     } catch(MMB\ArticleNotFoundException $e) {
         $app->abort(404, 'Not found');
     }
