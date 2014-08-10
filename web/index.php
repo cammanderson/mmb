@@ -6,13 +6,12 @@
 $loader = require_once __DIR__.'/../app/autoload.php';
 
 $app = new Silex\Application();
-$app['debug'] = true;
 
 // Allow config
 $app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/../app/config/config.yml'));
+$app->register(new MMB\ArticleServiceProvider());
 
 // Article
-$app->register(new MMB\ArticleServiceProvider());
 $app->match('/article/{key}', function ($key) use ($app) {
     try {
         // TODO: Twig
