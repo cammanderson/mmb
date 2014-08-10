@@ -18,3 +18,17 @@ dog's back.
 > This is the second paragraph in the blockquote.
 >
 > ## This is an H2 in a blockquote
+
+```php
+<?php
+class ExampleTrait
+{
+    public __construct()
+    {
+        $this->example = 'complete';
+    }
+
+}
+```
+
+Further text

@@ -4,6 +4,8 @@
  */
 namespace MMB\Markdown;
 
+use MMB\Article;
+
 class MarkdownArticle extends Article
 {
     protected $markdown;
@@ -13,12 +15,12 @@ class MarkdownArticle extends Article
     {
         $this->key = $key;
         $this->markdown = $markdown;
-        $this->formatter = $formatter;
+        $this->parser = $parser;
     }
 
     public function getBody()
     {
-        return $this->formatter->format($this->markdown);
+        return $this->parser->parse($this->markdown);
     }
 }
  

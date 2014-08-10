@@ -5,11 +5,11 @@
 namespace MMB\Markdown\Parsedown;
 use MMB\Highlighter\HighlighterInterface;
 
-trait CodeHighlightable {
+trait FencedCodeHighlightable {
 
     protected $highlighter;
 
-    public function setHighlighter(HighlighterInterface $highlighter)
+    public function setFencedCodeHighlighter(HighlighterInterface $highlighter)
     {
         $this->highlighter = $highlighter;
     }
@@ -22,12 +22,13 @@ trait CodeHighlightable {
 
         // Identify the code language
         $class = $Block['element']['text']['attributes']['class'];
-        $language = !empty($class) ? preg_replace('/$language\-/i', '', $class) : null;
+        $language = !empty($class) ? preg_replace('/^language\-/i', '', $class) : null;
         if(empty($language)) return $Block;
 
         // Proceed with a highlighter
         $output = $this->highlighter->highlight($Block['element']['text']['text'], $language);
         $Block['element']['text']['text'] = $output;
+        return $Block;
     }
 }
  

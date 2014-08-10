@@ -4,13 +4,15 @@
  */
 namespace MMB\Markdown;
 
+use MMB\ArticleProviderInterface;
+
 class MarkdownArticleFileProvider implements ArticleProviderInterface
 {
-    protected $formatter;
+    protected $parser;
 
-    function __construct(MarkdownFormatterInterface $formatter)
+    function __construct(MarkdownParserInterface $parser)
     {
-        $this->formatter = $formatter;
+        $this->parser = $parser;
     }
 
     /**
@@ -21,7 +23,7 @@ class MarkdownArticleFileProvider implements ArticleProviderInterface
     public function provide($key, $body)
     {
         // Load the file body
-        return new MarkdownArticle($key, $body, $this->formatter);
+        return new MarkdownArticle($key, $body, $this->parser);
     }
 
 

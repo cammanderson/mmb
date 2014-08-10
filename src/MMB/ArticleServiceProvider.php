@@ -4,6 +4,7 @@
  */
 namespace MMB;
 
+use MMB\Markdown\MarkdownArticleFileProvider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -14,16 +15,21 @@ class ArticleServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
-
         // TODO: configure source e.g. file, markdown
-        $app['markdown_formatter'] = $app->share(function () {
-            return new \MMB\ParsedownWrapper(new \Parsedown()); // TODO: inject in..
+        $app['markdown_parser_highlighter'] = $app->share(function($app) {
+            return new \MMB\Highlighter\PygmentsShell($app['config']['pygment']);
+        });
+        $app['markdown_parser'] = $app->share(function ($app) {
+            $parser = new \MMB\Markdown\Parsedown\StylisedParsedown();
+            if(!empty($app['markdown_parser_highlighter']))
+                $parser->setFencedCodeHighlighter($app['markdown_parser_highlighter']);
+            return $parser;
         });
         $app['article_provider'] = $app->share(function ($app) {
-            return new \MMB\MarkdownArticleFileProvider($app['markdown_formatter']);
+            return new MarkdownArticleFileProvider($app['markdown_parser']);
         });
         $app['article_service'] = $app->share(function ($app) {
-            return new \MMB\FileArticleService($app['config']['path'], $app['article_provider']);
+            return new FileArticleService($app['config']['path'], $app['article_provider']);
         });
 
     }

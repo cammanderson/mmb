@@ -4,6 +4,13 @@
  */
 namespace MMB\Markdown\Parsedown;
 
-class StylisedParsedown extends \Parsedown {
-    use CodeHighlightable;
+use MMB\Markdown\MarkdownParserInterface;
+
+class StylisedParsedown extends \Parsedown implements MarkdownParserInterface {
+    use FencedCodeHighlightable;
+
+    public function parse($markdown)
+    {
+        return $this->text($markdown);
+    }
 }

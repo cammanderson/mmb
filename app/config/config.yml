@@ -1,1 +1,2 @@
 path: ../app/Resources/content
+pygment: /opt/local/bin/pygmentize-2.7

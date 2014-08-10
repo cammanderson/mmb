@@ -7,7 +7,7 @@ namespace MMB\Tests\Markdown\Parsedown;
 use MMB\Highlighter\HighlighterInterface;
 use MMB\Markdown\Parsedown\StylisedParsedown;
 
-class StyledParsedownTest  extends \PHPUnit_Framework_TestCase
+class StyledParsedownTest extends \PHPUnit_Framework_TestCase
 {
     public function testParsedown()
     {
@@ -20,7 +20,7 @@ class StyledParsedownTest  extends \PHPUnit_Framework_TestCase
     {
         $highlighter = new MockHighlighter();
         $parsedown = new StylisedParsedown();
-        $parsedown->setHighlighter($highlighter);
+        $parsedown->setFencedCodeHighlighter($highlighter);
         $parsedown->text(<<<EOF
 ```php
 <?php print "Hello World"; ?>
