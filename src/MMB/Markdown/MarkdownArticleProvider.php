@@ -6,7 +6,7 @@ namespace MMB\Markdown;
 
 use MMB\ArticleProviderInterface;
 
-class MarkdownArticleFileProvider implements ArticleProviderInterface
+class MarkdownArticleProvider implements ArticleProviderInterface
 {
     protected $parser;
 
