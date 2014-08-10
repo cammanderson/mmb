@@ -2,7 +2,7 @@
 /*
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
-ini_set('display_errors', true);
+
 $loader = require_once __DIR__.'/../app/autoload.php';
 
 $app = new Silex\Application();
