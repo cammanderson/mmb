@@ -52,5 +52,10 @@ class MockHighlighter implements HighlighterInterface
     {
         return $this->block;
     }
+    public function getStyles()
+    {
+        return;
+    }
+
 }
  
