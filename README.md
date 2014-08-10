@@ -1,18 +1,14 @@
 Minimalist Markdown Blog
 ====
 
-This project is for the development of my minimalist markdown blog. Not really useful for others yet.
+My minimalist markdown blog. Done for a coding blog.
 
-Currently it sources a path for files, mapping to the /article/{file} route. Will format markdown files and highlight
-the fenced code using pygment.
+Currently silex based, markdown and pygment colourful coding, calls directly to markdown stored on the server.
 
-Lots of stuff to do it in. :-)
+Eventually to be moved to MCB (Minimalist Coders Blog) for more broader use. Developers can then implement their
+own article providers (file, git, cmf etc), formating and highlighters (e.g. pygments, geshi etc).
 
-Uses:
-- Silex
-- Parsedown
-- Pygments
-- Configuration
+Lots of stuff to do it in, probably not useful for others :-)
 
 Call your index.php/2014-08-09/index.md to start
 

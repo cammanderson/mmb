@@ -4,7 +4,6 @@
  */
 namespace MMB;
 
-use MMB\Markdown\MarkdownArticleFileProvider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -15,7 +14,7 @@ class ArticleServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
-        // TODO: configure source e.g. file, markdown
+        // TODO: configure e.g. file, db, cmf, github, markdown, parsedown, sundowner, pygment, geshi etc
         $app['markdown_parser_highlighter'] = $app->share(function($app) {
             return new \MMB\Highlighter\PygmentsShell($app['config']['pygment']);
         });
@@ -26,7 +25,7 @@ class ArticleServiceProvider implements ServiceProviderInterface
             return $parser;
         });
         $app['article_provider'] = $app->share(function ($app) {
-            return new MarkdownArticleFileProvider($app['markdown_parser']);
+            return new \MMB\Markdown\MarkdownArticleProvider($app['markdown_parser']);
         });
         $app['article_service'] = $app->share(function ($app) {
             return new FileArticleService($app['config']['path'], $app['article_provider']);
