@@ -2,6 +2,7 @@
     "require": {
         "silex/silex": "~1.2",
         "symfony/yaml": "~2.4",
+        "symfony/process" : "dev-master",
         "erusev/parsedown": "dev-master",
         "deralex/yaml-config-service-provider": "~1"
     }

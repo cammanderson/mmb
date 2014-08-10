@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1e8a505f5acd44ebc360d9d7f86c564f",
+    "hash": "f7e2f00a05a3a8621370d1b1c10488bf",
     "packages": [
         {
             "name": "deralex/yaml-config-service-provider",
@@ -506,6 +506,53 @@
             "time": "2014-08-06 07:03:01"
         },
         {
+            "name": "symfony/process",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Process",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Process.git",
+                "reference": "b21c57ca5656ca52665e2dbd851be44442175be9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/b21c57ca5656ca52665e2dbd851be44442175be9",
+                "reference": "b21c57ca5656ca52665e2dbd851be44442175be9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Process\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-08-05 09:07:51"
+        },
+        {
             "name": "symfony/routing",
             "version": "v2.5.3",
             "target-dir": "Symfony/Component/Routing",
@@ -627,6 +674,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "symfony/process": 20,
         "erusev/parsedown": 20
     },
     "platform": [

@@ -2,14 +2,14 @@
 /*
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
-namespace MMB;
+namespace MMB\Markdown;
 
 class MarkdownArticle extends Article
 {
     protected $markdown;
-    protected $formatter;
+    protected $parser;
 
-    function __construct($key, $markdown, MarkdownFormatterInterface $formatter)
+    function __construct($key, $markdown, MarkdownParserInterface $parser)
     {
         $this->key = $key;
         $this->markdown = $markdown;

@@ -2,7 +2,7 @@
 /*
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
-namespace MMB;
+namespace MMB\Markdown;
 
 class MarkdownArticleFileProvider implements ArticleProviderInterface
 {

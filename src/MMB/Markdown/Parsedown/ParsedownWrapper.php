@@ -2,9 +2,9 @@
 /*
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
-namespace MMB;
+namespace MMB\Markdown\Parsedown;
 
-class ParsedownWrapper implements MarkdownFormatterInterface
+class ParsedownWrapper implements MarkdownParserInterface
 {
     private $parser;
 
@@ -13,7 +13,7 @@ class ParsedownWrapper implements MarkdownFormatterInterface
         $this->parser = $parser;
     }
 
-    public function format($source)
+    public function parse($source)
     {
         return $this->parser->text($source);
     }

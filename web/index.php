@@ -3,8 +3,7 @@
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
 
-$loader = require_once __DIR__.'/../vendor/autoload.php';
-$loader->add('MMB', __DIR__.'/../src');
+$loader = require_once __DIR__.'/../app/autoload.php';
 
 $app = new Silex\Application();
 $app['debug'] = true;
