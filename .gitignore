@@ -6,5 +6,5 @@ vendor/*
 # Composer
 composer.phar
 composer.lock
-
+coverage
 .idea/

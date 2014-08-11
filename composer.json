@@ -13,7 +13,7 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "MMB\\": "src/"
+            "MMB\\": ""
         }
     },
     "require": {
