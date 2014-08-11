@@ -7,7 +7,6 @@ namespace MMB;
 class FileArticleService extends ArticleService
 {
     protected $path;
-    protected $provider;
 
     public function __construct($path, ArticleProviderInterface $provider)
     {
