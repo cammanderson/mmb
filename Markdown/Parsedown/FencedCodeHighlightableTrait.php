@@ -5,7 +5,7 @@
 namespace MMB\Markdown\Parsedown;
 use MMB\Highlighter\HighlighterInterface;
 
-trait FencedCodeHighlightable
+trait FencedCodeHighlightableTrait
 {
     protected $highlighter;
 

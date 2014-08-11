@@ -8,7 +8,7 @@ use MMB\Markdown\MarkdownParserInterface;
 
 class StylisedParsedown extends \Parsedown implements MarkdownParserInterface
 {
-    use FencedCodeHighlightable;
+    use FencedCodeHighlightableTrait;
 
     public function parse($markdown)
     {
