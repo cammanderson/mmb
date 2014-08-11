@@ -4,8 +4,8 @@
  */
 namespace MMB\Highlighter;
 
-interface HighlighterInterface {
+interface HighlighterInterface
+{
     public function highlight($block, $language);
     public function getStyles();
 }
- 

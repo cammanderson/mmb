@@ -8,4 +8,3 @@ interface MarkdownParserInterface
 {
     public function parse($markdown);
 }
- 

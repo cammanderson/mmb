@@ -17,8 +17,9 @@ $app->match('/article/{key}', function ($key) use ($app) {
         // TODO: Twig
         $doc = '<style type="text/css">' . $app['markdown_parser_highlighter']->getStyles() . '</style>';
         $doc .= $app['article_service']->getArticle($key)->getBody();
+
         return $doc;
-    } catch(MMB\ArticleNotFoundException $e) {
+    } catch (MMB\ArticleNotFoundException $e) {
         $app->abort(404, 'Not found');
     }
 })->assert('key', '.+');;

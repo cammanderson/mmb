@@ -11,7 +11,7 @@ class MarkdownArticle extends Article
     protected $markdown;
     protected $parser;
 
-    function __construct($key, $markdown, MarkdownParserInterface $parser)
+    public function __construct($key, $markdown, MarkdownParserInterface $parser)
     {
         $this->key = $key;
         $this->markdown = $markdown;
@@ -23,4 +23,3 @@ class MarkdownArticle extends Article
         return $this->parser->parse($this->markdown);
     }
 }
- 

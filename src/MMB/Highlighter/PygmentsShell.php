@@ -6,8 +6,8 @@ namespace MMB\Highlighter;
 
 use Symfony\Component\Process\ProcessBuilder;
 
-class PygmentsShell implements HighlighterInterface {
-
+class PygmentsShell implements HighlighterInterface
+{
     protected $bin;
     protected $defaultOpts = array(
         'full' => 'false',
@@ -16,7 +16,7 @@ class PygmentsShell implements HighlighterInterface {
     protected $style = 'colorful';
     protected $output = 'html';
 
-    function __construct($bin = '/usr/bin/pygmentize')
+    public function __construct($bin = '/usr/bin/pygmentize')
     {
         $this->bin = $bin;
     }
@@ -71,4 +71,3 @@ class PygmentsShell implements HighlighterInterface {
         return $process->getOutput();
     }
 }
- 

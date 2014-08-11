@@ -15,13 +15,14 @@ class ArticleServiceProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         // TODO: configure e.g. file, db, cmf, github, markdown, parsedown, sundowner, pygment, geshi etc
-        $app['markdown_parser_highlighter'] = $app->share(function($app) {
+        $app['markdown_parser_highlighter'] = $app->share(function ($app) {
             return new \MMB\Highlighter\PygmentsShell($app['config']['pygment']);
         });
         $app['markdown_parser'] = $app->share(function ($app) {
             $parser = new \MMB\Markdown\Parsedown\StylisedParsedown();
             if(!empty($app['markdown_parser_highlighter']))
                 $parser->setFencedCodeHighlighter($app['markdown_parser_highlighter']);
+
             return $parser;
         });
         $app['article_provider'] = $app->share(function ($app) {
@@ -41,4 +42,3 @@ class ArticleServiceProvider implements ServiceProviderInterface
     }
 
 }
- 

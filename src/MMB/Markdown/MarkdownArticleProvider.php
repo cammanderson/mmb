@@ -10,7 +10,7 @@ class MarkdownArticleProvider implements ArticleProviderInterface
 {
     protected $parser;
 
-    function __construct(MarkdownParserInterface $parser)
+    public function __construct(MarkdownParserInterface $parser)
     {
         $this->parser = $parser;
     }
@@ -25,6 +25,5 @@ class MarkdownArticleProvider implements ArticleProviderInterface
         // Load the file body
         return new MarkdownArticle($key, $body, $this->parser);
     }
-
 
 }

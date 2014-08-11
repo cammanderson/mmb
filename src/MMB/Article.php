@@ -19,4 +19,3 @@ abstract class Article
         return $this->key;
     }
 }
- 

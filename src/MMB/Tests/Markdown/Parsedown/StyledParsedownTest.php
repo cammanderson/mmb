@@ -41,6 +41,7 @@ class MockHighlighter implements HighlighterInterface
     {
         $this->called = true;
         $this->block = $block;
+
         return $block;
     }
 
@@ -58,4 +59,3 @@ class MockHighlighter implements HighlighterInterface
     }
 
 }
- 

@@ -4,7 +4,6 @@
  */
 namespace MMB;
 
-class ArticleNotFoundException extends \Exception {
-
+class ArticleNotFoundException extends \Exception
+{
 }
- 
