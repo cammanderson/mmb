@@ -70,4 +70,20 @@ class PygmentsShell implements HighlighterInterface
         // Return the result
         return $process->getOutput();
     }
+
+    /**
+     * @param string $style
+     */
+    public function setStyle($style)
+    {
+        $this->style = $style;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStyle()
+    {
+        return $this->style;
+    }
 }
