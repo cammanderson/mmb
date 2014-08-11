@@ -8,7 +8,24 @@ repository. Articles are pushed here and mapped by the FileArticleService.
 
 ## Usage
 
-Install pygments.
+For your application:
+
+* Add to your composer
+* Add to your Silex application
+* Install [Pygments](http://pygments.org/download/)
+* Specify the pygmentize bin
+* Specify the path to the articles (default file provider)
+
+### Composer
+
+```yaml
+{
+    "require": {
+        "cammanderson/mmb" : "@dev"
+    }
+}
+```
+
 
 ### Silex Service Provider and Route
 
@@ -35,7 +52,7 @@ $app->match('/article/{key}', function ($key) use ($app) {
 ### Configuration
 
 Currently needs a couple of elements:
-| path | Location of your markdown articles |
+| path    | Location of your markdown articles             |
 | pygment | Location of your pygmentize syntax highlighter |
 
 ```yaml
@@ -93,6 +110,7 @@ own article providers (file, git, cmf etc), formating and highlighters (e.g. pyg
 
 - Add various traits to article to support dates, author, version, changelog etc
 - Implement a GitArticleService/GitHubArticleService that interrogates git for author, versions, etc
+- Implement a better configuration layout
 - Implement ArticleService list commands, allowing listings of blog history
 - Possible Symfony2 support via DI/Service container config
 - Implement geshi/sundown/restructedtext etc.
