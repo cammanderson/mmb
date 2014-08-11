@@ -1,13 +1,16 @@
 # Minimalist Markdown Blog
 
-My minimalist markdown blog. Done for a coding blog.
+Focus on writing clean blog articles using simple markdown. Include beautiful colourful fenced code blocks that people
+will love.
 
-Currently silex based, markdown and pygment colourful coding, calls directly to markdown stored on the server.
+Minimalistic approach, based on silex. Chose where to store and retrieve your markdown, I'm using a separate git
+repository. Articles are pushed here and mapped by the FileArticleService.
 
-Eventually to be moved to MCB (Minimalist Coders Blog) for more broader use. Developers can then implement their
-own article providers (file, git, cmf etc), formating and highlighters (e.g. pygments, geshi etc).
+## Usage
 
-## Silex Service Provider and Route
+Install pygments.
+
+### Silex Service Provider and Route
 
 You can add the article service and then use it in your application as needed.
 
@@ -29,7 +32,7 @@ $app->match('/article/{key}', function ($key) use ($app) {
 ...
 ```
 
-## Configuration
+### Configuration
 
 Currently needs a couple of elements:
 | path | Location of your markdown articles |
@@ -39,3 +42,58 @@ Currently needs a couple of elements:
 path: ../content
 pygment: /opt/local/bin/pygmentize-2.7
 ```
+
+### Writing Articles
+
+Using the FileArticleService, it will take a configuration _path_ to look for files. Articles are mapped by key, where
+the key matches the filename.
+
+    2014-08-10_my-article.md
+    2014-08-12_my-other-article.md
+
+## Extending
+
+### Alternative location for Articles
+
+You can always implement your own ArticleService to source the articles from another location.
+
+```php
+class MyArticleService extends AbstractArticleService
+{
+    public function getArticle($key)
+    {
+        // TODO: Implement your own method to locate the article
+        $articleContents = '...';
+
+        // Create the article
+        $article = $this->provider->provide($key, $articleContents);
+
+        // ... Apply further properties your Service supports
+
+        // Return
+        return $article;
+    }
+}
+```
+
+Now register to the dependency injector (remember to provider the article provider).
+
+```php
+$app['article_service'] = $app->share(function ($app) {
+    $service = new MyArticleService();
+    $service->setProvider($app['article_provider']);
+    return $service;
+});
+```
+
+## TODO
+
+Eventually to be moved to MCB (Minimalist Coders Blog) for more broader use. Developers can then implement their
+own article providers (file, git, cmf etc), formating and highlighters (e.g. pygments, geshi etc).
+
+- Add various traits to article to support dates, author, version, changelog etc
+- Implement a GitArticleService/GitHubArticleService that interrogates git for author, versions, etc
+- Implement ArticleService list commands, allowing listings of blog history
+- Possible Symfony2 support via DI/Service container config
+- Implement geshi/sundown/restructedtext etc.
+
