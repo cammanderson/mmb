@@ -68,6 +68,10 @@ the key matches the filename.
     2014-08-10_my-article.md
     2014-08-12_my-other-article.md
 
+### Hosting articles on github
+
+It is easily possible to place the articles in your github repository and connect to it using [GithubService for mmd](https://github.com/cammanderson/mmb-github).
+
 ## Extending
 
 ### Alternative location for Articles
