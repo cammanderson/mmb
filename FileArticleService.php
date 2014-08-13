@@ -5,6 +5,7 @@
 namespace MMB;
 
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 class FileArticleService extends AbstractArticleService
 {
@@ -37,13 +38,24 @@ class FileArticleService extends AbstractArticleService
     {
         $finder = new Finder();
         $articles = array();
-        foreach ($finder->in($this->path)->files()->name($this->match) as $file) {
+        $filter = function (SplFileInfo $file)
+        {
+            // Filter if the file matches our path reference
+            return (preg_match($this->match, $file->getRelativePathname()));
+        };
+
+        foreach ($finder->in($this->path)->files()->filter($filter) as $file) {
             $articles[$file->getRelativePathname()] = $this->provider->provide($file->getRelativePathname(), $file->getContents());
         }
         // Sort by the naming in reverse
         krsort($articles);
 
         return $articles;
+    }
+
+    protected function index($files)
+    {
+
     }
 
     /**

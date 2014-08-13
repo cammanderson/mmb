@@ -6,23 +6,21 @@
 namespace MMB\Tests;
 
 use MMB\ArticleProviderInterface;
-use MMB\ArticleServiceProvider;
 use MMB\FileArticleService;
-use MMB\Markdown\MarkdownArticleProvider;
-use MMB\Markdown\Parsedown\StylisedParsedown;
+use MMB\Article;
 
 class FileArticleServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetList()
     {
-        $articleServer = new FileArticleService(__DIR__ . '/Resources/content', new MockMarkdownArticleProvider());
+        $articleServer = new FileArticleService(__DIR__ . '/Resources/content', new MockArticleProvider());
         $result = $articleServer->getList();
-        $this->assertEquals(count($result), 2);
-        $this->assertTrue(get_class(current($result)) == 'MMB\Markdown\Parsedown\StylisedParsedown');
+        $this->assertTrue(count($result) >= 4, 'Can not locate all the articles');
+        $this->assertTrue(get_class(current($result)) == 'MMB\Tests\DummyArticle');
     }
 }
 
-class MockMarkdownArticleProvider implements ArticleProviderInterface
+class MockArticleProvider implements ArticleProviderInterface
 {
     /**
      * @param $key
@@ -31,7 +29,16 @@ class MockMarkdownArticleProvider implements ArticleProviderInterface
      */
     public function provide($key, $content)
     {
-        return new StylisedParsedown($key, $content);
+        return new DummyArticle($key, $content);
     }
+}
 
+class DummyArticle extends Article {
+
+
+    function __construct($key, $content)
+    {
+        $this->key = $key;
+        $this->content = $content;
+    }
 }
