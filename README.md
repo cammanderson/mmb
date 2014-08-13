@@ -21,7 +21,7 @@ For your application:
 ```yaml
 {
     "require": {
-        "cammanderson/mmb" : "@dev"
+        "cammanderson/mmb" : "dev-master"
     }
 }
 ```
