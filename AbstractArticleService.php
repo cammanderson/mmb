@@ -14,7 +14,7 @@ abstract class AbstractArticleService
         return $this->provider->get($key);
     }
 
-    public function listArticles()
+    public function getArticles()
     {
           return array();
     }

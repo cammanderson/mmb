@@ -34,7 +34,7 @@ class FileArticleService extends AbstractArticleService
         throw new ArticleNotFoundException();
     }
 
-    public function getList()
+    public function getArticles()
     {
         $finder = new Finder();
         $articles = array();
@@ -50,11 +50,6 @@ class FileArticleService extends AbstractArticleService
         krsort($articles);
 
         return $articles;
-    }
-
-    protected function index($files)
-    {
-
     }
 
     /**
