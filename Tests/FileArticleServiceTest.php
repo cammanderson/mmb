@@ -33,10 +33,9 @@ class MockArticleProvider implements ArticleProviderInterface
     }
 }
 
-class DummyArticle extends Article {
-
-
-    function __construct($key, $content)
+class DummyArticle extends Article
+{
+    public function __construct($key, $content)
     {
         $this->key = $key;
         $this->content = $content;

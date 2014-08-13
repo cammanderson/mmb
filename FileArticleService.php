@@ -38,8 +38,7 @@ class FileArticleService extends AbstractArticleService
     {
         $finder = new Finder();
         $articles = array();
-        $filter = function (SplFileInfo $file)
-        {
+        $filter = function (SplFileInfo $file) {
             // Filter if the file matches our path reference
             return (preg_match($this->match, $file->getRelativePathname()));
         };
