@@ -4,9 +4,13 @@
  */
 namespace MMB;
 
+use Symfony\Component\Finder\Finder;
+
 class FileArticleService extends AbstractArticleService
 {
     protected $path;
+
+    protected $match = '/(\d{2,4})[_\/\-]+(\d{2})[_\/\-]+(\d{2})[_\/\-]+(.+\.md)$/i';
 
     public function __construct($path, ArticleProviderInterface $provider)
     {
@@ -28,4 +32,34 @@ class FileArticleService extends AbstractArticleService
         // Otherwise we want to indicate
         throw new ArticleNotFoundException();
     }
+
+    public function getList()
+    {
+        $finder = new Finder();
+        $articles = array();
+        foreach ($finder->in($this->path)->files()->name($this->match) as $file) {
+            $articles[$file->getRelativePathname()] = $this->provider->provide($file->getRelativePathname(), $file->getContents());
+        }
+        // Sort by the naming in reverse
+        krsort($articles);
+
+        return $articles;
+    }
+
+    /**
+     * @param mixed $match
+     */
+    public function setMatch($match)
+    {
+        $this->match = $match;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMatch()
+    {
+        return $this->match;
+    }
+
 }
