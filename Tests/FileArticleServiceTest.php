@@ -14,7 +14,7 @@ class FileArticleServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetList()
     {
         $articleServer = new FileArticleService(__DIR__ . '/Resources/content', new MockArticleProvider());
-        $result = $articleServer->getList();
+        $result = $articleServer->getArticles();
         $this->assertTrue(count($result) >= 4, 'Can not locate all the articles');
         $this->assertTrue(get_class(current($result)) == 'MMB\Tests\DummyArticle');
     }
