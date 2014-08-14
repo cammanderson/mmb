@@ -16,7 +16,7 @@ class ArticleServiceProvider implements ServiceProviderInterface
     {
         // TODO: configure e.g. file, db, cmf, github, markdown, parsedown, sundowner, pygment, geshi etc
         $app['markdown_parser_highlighter'] = $app->share(function ($app) {
-            return new \MMB\Highlighter\PygmentsShell($app['config']['pygment']);
+            return new \MMB\Highlighter\PygmentsShell($app['config']['parameters']['pygments_bin']);
         });
         $app['markdown_parser'] = $app->share(function ($app) {
             $parser = new \MMB\Markdown\Parsedown\StylisedParsedown();
@@ -29,7 +29,7 @@ class ArticleServiceProvider implements ServiceProviderInterface
             return new \MMB\Markdown\MarkdownArticleProvider($app['markdown_parser']);
         });
         $app['article_service'] = $app->share(function ($app) {
-            return new FileArticleService($app['config']['path'], $app['article_provider']);
+            return new FileArticleService($app['config']['parameters']['mmb_file_path'], $app['article_provider']);
         });
 
     }

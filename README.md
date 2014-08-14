@@ -35,25 +35,25 @@ You can add the article service and then use it in your application as needed.
 ...
 $app->register(new MMB\ArticleServiceProvider());
 ...
+// Controller
+$articleController = function (Silex\Application $app, MMB\Article $article) {
+    return $app['twig']->render('article.html.twig', array(
+            'article' => $article,
+            'highlighter' => $app['markdown_parser_highlighter']
+        ));
+};
+
 // Add the article route
-$app->match('/article/{key}', function ($key) use ($app) {
-    try {
-        // TODO: Twig it up
-        $doc = '<style type="text/css">' . $app['markdown_parser_highlighter']->getStyles() . '</style>';
-        $doc .= $app['article_service']->getArticle($key)->getBody();
-        return $doc;
-    } catch(MMB\ArticleNotFoundException $e) {
-        $app->abort(404, 'Not found');
-    }
-})->assert('key', '.+');
+$app->get('/article/{article}', function (MMB\Article $article) use ($app, $articleController) {
+    return $articleController($app, $article);
+})->assert('article', '.+')
+->convert('article', 'article_service:getArticle');
 ...
 ```
 
 ### Configuration
 
-Currently needs a couple of elements:
-| path    | Location of your markdown articles             |
-| pygment | Location of your pygmentize syntax highlighter |
+Currently needs a couple of elements set to app['config']['parameters']
 
 ```yaml
 path: ../content
