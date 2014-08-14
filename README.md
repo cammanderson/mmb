@@ -51,14 +51,17 @@ $app->get('/article/{article}', function (MMB\Article $article) use ($app, $arti
 ...
 ```
 
-### Configuration
+### Default Configuration
 
 Currently needs a couple of elements set to app['config']['parameters']
 
 ```yaml
-path: ../content
-pygment: /opt/local/bin/pygmentize-2.7
+parameters:
+    mmb_file_path: ../content
+    pygments_bin: /opt/local/bin/pygmentize-2.7
 ```
+
+Consider using a YAML config provider for silex [deralex/yaml-config-service-provider](http://https://github.com/deralex/YamlConfigServiceProvider)
 
 ### Writing Articles
 
