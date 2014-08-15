@@ -6,6 +6,7 @@ namespace MMB;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use MMB\Meta\PublishedInterface;
 
 class FileArticleService extends AbstractArticleService
 {
@@ -22,11 +23,15 @@ class FileArticleService extends AbstractArticleService
     public function getArticle($key)
     {
         // This should load the file contents
-        $basepath = getcwd() . '/' . $this->path;
+        $basepath = $this->path;
         $resolved = realpath($basepath . '/' . $key);
         if (strpos($resolved, $basepath) == 0) { // TODO: Sanitize the path further
             if (is_readable($resolved)) {
-                return $this->provider->provide($key, file_get_contents($resolved));
+                $article = $this->provider->provide($key, file_get_contents($resolved));
+                if($article instanceof PublishedInterface)
+                    $article->setPublished($this->getPublishedDateFromKey($key));
+
+                return $article;
             }
         }
 
@@ -50,6 +55,13 @@ class FileArticleService extends AbstractArticleService
         krsort($articles);
 
         return $articles;
+    }
+
+    protected function getPublishedDateFromKey($key)
+    {
+        preg_match('/([\d]{4}).?([\d]{2}).?([\d]{2})/', $key, $matches);
+
+        return new \DateTime(implode(array_slice($matches, 1), '/'));
     }
 
     /**

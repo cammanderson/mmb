@@ -3,23 +3,23 @@
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
 
-namespace MMD;
+namespace MMB\Meta;;
 
-class MetaTimestampTrait
+trait MetaTimestampTrait
 {
     protected $created;
     protected $updated;
 
     /**
-     * @param mixed $created
+     * @param \DateTime $created
      */
-    public function setCreated(\DateTimeInterface $created)
+    public function setCreated(\DateTime $created)
     {
         $this->created = $created;
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -27,15 +27,15 @@ class MetaTimestampTrait
     }
 
     /**
-     * @param mixed $updated
+     * @param \DateTime $updated
      */
-    public function setUpdated(\DateTimeInterface $updated)
+    public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getUpdated()
     {

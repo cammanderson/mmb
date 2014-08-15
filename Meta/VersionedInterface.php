@@ -3,7 +3,7 @@
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
 
-namespace MMB;
+namespace MMB\Meta;
 
 interface VersionedInterface
 {
@@ -18,4 +18,3 @@ interface VersionedInterface
      */
     public function setCurrentVersionId($versionId);
 }
- 

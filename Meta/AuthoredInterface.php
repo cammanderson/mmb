@@ -3,7 +3,7 @@
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
 
-namespace MMB;
+namespace MMB\Meta;
 
 interface AuthoredInterface
 {
@@ -15,4 +15,3 @@ interface AuthoredInterface
     public function setAuthorEmail($email);
     public function setAuthorName($name);
 }
- 

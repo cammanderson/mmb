@@ -4,8 +4,13 @@
  */
 namespace MMB;
 
-abstract class Article
+use MMB\Meta\PublishedInterface;
+use MMB\Meta\MetaPublishTrait;
+
+abstract class Article implements PublishedInterface
 {
+    use MetaPublishTrait;
+
     protected $body;
     protected $key;
 

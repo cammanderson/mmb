@@ -3,9 +3,9 @@
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
 
-namespace MMB;
+namespace MMB\Meta;
 
-class MetaAuthorTrait
+trait MetaAuthorTrait
 {
     protected $authorUser;
     protected $authorName;
