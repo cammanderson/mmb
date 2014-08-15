@@ -12,6 +12,14 @@ trait MetaAuthorTrait
     protected $authorEmail;
 
     /**
+     * @param mixed $authorUser
+     */
+    public function setAuthorUser($authorUser)
+    {
+        $this->authorUser = $authorUser;
+    }
+
+    /**
      * @return mixed
      */
     public function getAuthorUser()
