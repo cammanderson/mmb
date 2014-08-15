@@ -7,6 +7,7 @@ namespace MMB;
 abstract class AbstractArticleService
 {
 
+    protected $match = '/(\d{2,4})[_\/\-]+(\d{2})[_\/\-]+(\d{2})[_\/\-]+(.+\.md)$/i';
     protected $provider;
 
     public function getArticle($key)
@@ -35,4 +36,10 @@ abstract class AbstractArticleService
         return $this->provider;
     }
 
+    protected function getDateFromKey($key)
+    {
+        preg_match('/([\d]{4}).?([\d]{2}).?([\d]{2})/', $key, $matches);
+
+        return new \DateTime(implode(array_slice($matches, 1), '/'));
+    }
 }

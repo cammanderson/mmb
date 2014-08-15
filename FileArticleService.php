@@ -12,8 +12,6 @@ class FileArticleService extends AbstractArticleService
 {
     protected $path;
 
-    protected $match = '/(\d{2,4})[_\/\-]+(\d{2})[_\/\-]+(\d{2})[_\/\-]+(.+\.md)$/i';
-
     public function __construct($path, ArticleProviderInterface $provider)
     {
         $this->path = $path;
@@ -29,7 +27,7 @@ class FileArticleService extends AbstractArticleService
             if (is_readable($resolved)) {
                 $article = $this->provider->provide($key, file_get_contents($resolved));
                 if($article instanceof PublishedInterface)
-                    $article->setPublished($this->getPublishedDateFromKey($key));
+                    $article->setPublished($this->getDateFromKey($key));
 
                 return $article;
             }
@@ -55,13 +53,6 @@ class FileArticleService extends AbstractArticleService
         krsort($articles);
 
         return $articles;
-    }
-
-    protected function getPublishedDateFromKey($key)
-    {
-        preg_match('/([\d]{4}).?([\d]{2}).?([\d]{2})/', $key, $matches);
-
-        return new \DateTime(implode(array_slice($matches, 1), '/'));
     }
 
     /**
