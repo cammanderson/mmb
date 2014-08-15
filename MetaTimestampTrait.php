@@ -13,7 +13,7 @@ class MetaTimestampTrait
     /**
      * @param mixed $created
      */
-    public function setCreated($created)
+    public function setCreated(\DateTimeInterface $created)
     {
         $this->created = $created;
     }
@@ -29,7 +29,7 @@ class MetaTimestampTrait
     /**
      * @param mixed $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(\DateTimeInterface $updated)
     {
         $this->updated = $updated;
     }
