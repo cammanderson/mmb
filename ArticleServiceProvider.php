@@ -4,6 +4,7 @@
  */
 namespace MMB;
 
+use MMB\Filesystem\FilesystemArticleService;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -19,17 +20,23 @@ class ArticleServiceProvider implements ServiceProviderInterface
             return new \MMB\Highlighter\PygmentsShell($app['config']['parameters']['pygments_bin']);
         });
         $app['markdown_parser'] = $app->share(function ($app) {
-            $parser = new \MMB\Markdown\Parsedown\StylisedParsedown();
+            $parser = new \MMB\Markdown\Parser\Parsedown\StylisedParsedown();
             if(!empty($app['markdown_parser_highlighter']))
-                $parser->setFencedCodeHighlighter($app['markdown_parser_highlighter']);
+                $parser->setHighlighter($app['markdown_parser_highlighter']);
 
             return $parser;
         });
-        $app['article_provider'] = $app->share(function ($app) {
-            return new \MMB\Markdown\MarkdownArticleProvider($app['markdown_parser']);
+        $app['article_provider'] = $app->share(function () {
+            return new \MMB\Filesystem\FilesystemArticleProvider();
+        });
+        $app['document_provider'] = $app->share(function ($app) {
+            $documentProvider = new \MMB\Markdown\MarkdownDocumentProvider();
+            $documentProvider->setParser($app['markdown_parser']);
+
+            return $documentProvider;
         });
         $app['article_service'] = $app->share(function ($app) {
-            return new FileArticleService($app['config']['parameters']['mmb_file_path'], $app['article_provider']);
+            return new FilesystemArticleService($app['config']['parameters']['mmb_file_path'], $app['article_provider'], $app['document_provider']);
         });
 
     }
