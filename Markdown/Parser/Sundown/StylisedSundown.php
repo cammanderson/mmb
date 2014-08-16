@@ -3,18 +3,21 @@
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
 
-namespace MMB\Markdown\Sundown;
+namespace MMB\Markdown\Parser\Sundown;
 
 use MMB\Highlighter\HighlighterInterface;
+use MMB\Markdown\MarkdownParserInterface;
+use MMB\Highlighter\HighlightableInterface;
+use Sundown\Render\XHTML;
 
-trait FencedCodeHighlightableTrait
+class StylisedSundown extends XHTML implements MarkdownParserInterface, HighlightableInterface
 {
     /**
      * @var HighlighterInterface
      */
     protected $highlighter;
 
-    public function setFencedCodeHighlighter(HighlighterInterface $highlighter)
+    public function setHighlighter(HighlighterInterface $highlighter)
     {
         $this->highlighter = $highlighter;
     }
@@ -23,9 +26,15 @@ trait FencedCodeHighlightableTrait
     {
         // If we have set a highlighter
         if(empty($this->highlighter))
+
             return parent::completeFencedCode($code, $language);
 
         return $this->highlighter->highlight($code, $language);
     }
+
+    public function parse($markdown)
+    {
+        return $this->render($markdown);
+    }
+
 }
- 

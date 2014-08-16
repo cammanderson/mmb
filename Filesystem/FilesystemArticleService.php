@@ -2,20 +2,25 @@
 /*
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
-namespace MMB;
+namespace MMB\Filesystem;
 
+use MMB\AbstractArticleService;
+use MMB\ArticleNotFoundException;
+use MMB\ArticleProviderInterface;
+use MMB\DocumentProviderInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use MMB\Meta\PublishedInterface;
 
-class FileArticleService extends AbstractArticleService
+class FilesystemArticleService extends AbstractArticleService
 {
     protected $path;
 
-    public function __construct($path, ArticleProviderInterface $provider)
+    public function __construct($path, ArticleProviderInterface $articleProvider, DocumentProviderInterface $documentProvider)
     {
         $this->path = $path;
-        $this->provider = $provider;
+        $this->articleProvider = $articleProvider;
+        $this->documentProvider = $documentProvider;
     }
 
     public function getArticle($key)
@@ -25,7 +30,11 @@ class FileArticleService extends AbstractArticleService
         $resolved = realpath($basepath . '/' . $key);
         if (strpos($resolved, $basepath) == 0) { // TODO: Sanitize the path further
             if (is_readable($resolved)) {
-                $article = $this->provider->provide($key, file_get_contents($resolved));
+
+                // Structure our article
+                $document = $this->documentProvider->provide(file_get_contents($resolved));
+                $article = $this->articleProvider->provide($key, $document);
+
                 if($article instanceof PublishedInterface)
                     $article->setPublished($this->getDateFromKey($key));
 
@@ -47,7 +56,9 @@ class FileArticleService extends AbstractArticleService
         };
 
         foreach ($finder->in($this->path)->files()->filter($filter) as $file) {
-            $articles[$file->getRelativePathname()] = $this->provider->provide($file->getRelativePathname(), $file->getContents());
+
+            $document = $this->documentProvider->provide($file->getContents());
+            $articles[$file->getRelativePathname()] = $this->articleProvider->provide($file->getRelativePathname(), $document);
         }
         // Sort by the naming in reverse
         krsort($articles);

@@ -8,8 +8,7 @@ interface ArticleProviderInterface
 {
     /**
      * @param $key
-     * @param $path
      * @return \MMB\Article
      */
-    public function provide($key, $path);
+    public function provide($key, AbstractDocument $document);
 }
