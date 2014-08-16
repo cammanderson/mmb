@@ -4,7 +4,8 @@
  */
 namespace MMB\Markdown;
 
-interface MarkdownParserInterface
+use MMB\AbstractParsedDocument;
+
+class MarkdownDocument extends AbstractParsedDocument
 {
-    public function parse($markdown);
 }

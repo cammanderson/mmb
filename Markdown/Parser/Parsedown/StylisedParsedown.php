@@ -2,14 +2,17 @@
 /*
  * Author; Cameron Manderson <cameronmanderson@gmail.com>
  */
-namespace MMB\Markdown\Parsedown;
-use MMB\Highlighter\HighlighterInterface;
+namespace MMB\Markdown\Parser\Parsedown;
 
-trait FencedCodeHighlightableTrait
+use MMB\Highlighter\HighlightableInterface;
+use MMB\Highlighter\HighlighterInterface;
+use MMB\Markdown\MarkdownParserInterface;
+
+class StylisedParsedown extends \Parsedown implements MarkdownParserInterface, HighlightableInterface
 {
     protected $highlighter;
 
-    public function setFencedCodeHighlighter(HighlighterInterface $highlighter)
+    public function setHighlighter(HighlighterInterface $highlighter)
     {
         $this->highlighter = $highlighter;
     }
@@ -31,5 +34,10 @@ trait FencedCodeHighlightableTrait
         $Block['element']['text']['text'] = $output;
 
         return $Block;
+    }
+
+    public function parse($markdown)
+    {
+        return $this->text($markdown);
     }
 }

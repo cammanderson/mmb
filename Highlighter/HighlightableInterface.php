@@ -7,6 +7,6 @@ namespace MMB\Highlighter;
 
 interface HighlightableInterface
 {
-    public function setFencedCodeHighlighter(HighlighterInterface $highlighter);
+    public function setHighlighter(HighlighterInterface $highlighter);
 }
  

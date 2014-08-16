@@ -8,11 +8,19 @@ abstract class AbstractArticleService
 {
 
     protected $match = '/(\d{2,4})[_\/\-]+(\d{2})[_\/\-]+(\d{2})[_\/\-]+(.+\.md)$/i';
-    protected $provider;
+    /**
+     * @var ArticleProviderInterface
+     */
+    protected $articleProvider;
+
+    /**
+     * @var DocumentProviderInterface
+     */
+    protected $documentProvider;
 
     public function getArticle($key)
     {
-        return $this->provider->get($key);
+        throw new ArticleNotFoundException();
     }
 
     public function getArticles()
@@ -21,20 +29,37 @@ abstract class AbstractArticleService
     }
 
     /**
-     * @param ArticleProviderInterface $provider
+     * @param \MMB\ArticleProviderInterface $articleProvider
      */
-    public function setProvider(ArticleProviderInterface $provider)
+    public function setArticleProvider($articleProvider)
     {
-        $this->provider = $provider;
+        $this->articleProvider = $articleProvider;
     }
 
     /**
-     * @return mixed
+     * @return \MMB\ArticleProviderInterface
      */
-    public function getProvider()
+    public function getArticleProvider()
     {
-        return $this->provider;
+        return $this->articleProvider;
     }
+
+    /**
+     * @param \MMB\DocumentProviderInterface $documentProvider
+     */
+    public function setDocumentProvider($documentProvider)
+    {
+        $this->documentProvider = $documentProvider;
+    }
+
+    /**
+     * @return \MMB\DocumentProviderInterface
+     */
+    public function getDocumentProvider()
+    {
+        return $this->documentProvider;
+    }
+
 
     protected function getDateFromKey($key)
     {
