@@ -11,15 +11,20 @@ abstract class AbstractParsedDocument extends AbstractDocument
      * @var ParserInterface
      */
     protected $parser;
+    protected $parsedContent;
 
     public function __construct($content, ParserInterface $parser)
     {
+        $this->content = $content;
         $this->parser = $parser;
     }
 
-    public function getParsedContent()
+    public function getContent()
     {
-        $this->parser->parse($this->getContent());
+        if(empty($this->parsedContent)) {
+            $this->parsedContent = $this->parser->parse($this->content);
+        }
+        return $this->parsedContent;
     }
 
     /**

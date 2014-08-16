@@ -29,4 +29,8 @@ abstract class AbstractArticle implements PublishedInterface
     {
         return $this->key;
     }
+
+    public function getDocumentContent() {
+        return $this->document->getContent();
+    }
 }
