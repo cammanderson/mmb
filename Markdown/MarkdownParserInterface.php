@@ -5,7 +5,9 @@
 
 namespace MMB\Markdown;
 
-interface MarkdownParserInterface
+use MMB\ParserInterface;
+
+interface MarkdownParserInterface extends ParserInterface
 {
     public function parse($markdown);
 }
