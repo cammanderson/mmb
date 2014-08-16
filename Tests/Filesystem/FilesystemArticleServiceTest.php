@@ -42,7 +42,6 @@ class MockArticleProvider implements ArticleProviderInterface
         return new DummyArticle($key, $document);
     }
 
-
 }
 
 class MockDocumentProvider implements DocumentProviderInterface

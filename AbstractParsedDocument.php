@@ -12,7 +12,7 @@ abstract class AbstractParsedDocument extends AbstractDocument
      */
     protected $parser;
 
-    function __construct($content, ParserInterface $parser)
+    public function __construct($content, ParserInterface $parser)
     {
         $this->parser = $parser;
     }
@@ -38,6 +38,4 @@ abstract class AbstractParsedDocument extends AbstractDocument
         return $this->parser;
     }
 
-
 }
- 

@@ -21,4 +21,3 @@ class FilesystemArticleProvider implements ArticleProviderInterface
     }
 
 }
- 

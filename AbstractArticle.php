@@ -14,7 +14,7 @@ abstract class AbstractArticle implements PublishedInterface
     protected $document;
     protected $key;
 
-    function __construct($key, AbstractDocument $document)
+    public function __construct($key, AbstractDocument $document)
     {
         $this->key = $key;
         $this->document = $document;

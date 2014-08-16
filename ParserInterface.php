@@ -9,4 +9,3 @@ interface ParserInterface
 {
     public function parse($source);
 }
- 

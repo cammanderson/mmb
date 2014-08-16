@@ -25,6 +25,4 @@ class AbstractParsedDocumentProvider
         return $this->parser;
     }
 
-
 }
- 

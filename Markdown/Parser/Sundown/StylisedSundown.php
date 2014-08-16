@@ -26,6 +26,7 @@ class StylisedSundown extends XHTML implements MarkdownParserInterface, Highligh
     {
         // If we have set a highlighter
         if(empty($this->highlighter))
+
             return parent::completeFencedCode($code, $language);
 
         return $this->highlighter->highlight($code, $language);
@@ -37,4 +38,3 @@ class StylisedSundown extends XHTML implements MarkdownParserInterface, Highligh
     }
 
 }
- 

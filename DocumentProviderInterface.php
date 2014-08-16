@@ -9,4 +9,3 @@ interface DocumentProviderInterface
 {
     public function provide($source);
 }
- 

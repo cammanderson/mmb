@@ -9,7 +9,7 @@ abstract class AbstractDocument
 {
     protected $content;
 
-    function __construct($content)
+    public function __construct($content)
     {
         $this->content = $content;
     }
@@ -22,4 +22,3 @@ abstract class AbstractDocument
         return $this->content;
     }
 }
- 

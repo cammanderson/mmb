@@ -9,4 +9,3 @@ interface HighlightableInterface
 {
     public function setHighlighter(HighlighterInterface $highlighter);
 }
- 

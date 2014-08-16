@@ -11,4 +11,3 @@ class FilesystemArticle extends AbstractArticle
 {
 
 }
- 
