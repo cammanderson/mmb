@@ -7,56 +7,21 @@ namespace MMB\Meta;
 
 trait MetaAuthorTrait
 {
-    protected $authorUser;
-    protected $authorName;
-    protected $authorEmail;
+    protected $author;
 
     /**
-     * @param mixed $authorUser
+     * @param mixed $author
      */
-    public function setAuthorUser($authorUser)
+    public function setAuthor($author)
     {
-        $this->authorUser = $authorUser;
+        $this->author = $author;
     }
 
     /**
      * @return mixed
      */
-    public function getAuthorUser()
+    public function getAuthor()
     {
-        return $this->authorUser;
+        return $this->author;
     }
-
-    /**
-     * @param mixed $authorEmail
-     */
-    public function setAuthorEmail($authorEmail)
-    {
-        $this->authorEmail = $authorEmail;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthorEmail()
-    {
-        return $this->authorEmail;
-    }
-
-    /**
-     * @param mixed $authorName
-     */
-    public function setAuthorName($authorName)
-    {
-        $this->authorName = $authorName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthorName()
-    {
-        return $this->authorName;
-    }
-
 }
