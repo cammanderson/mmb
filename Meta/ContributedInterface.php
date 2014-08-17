@@ -5,7 +5,7 @@
 
 namespace MMB\Meta;
 
-interface CollaboratedInterface
+interface ContributedInterface
 {
     public function getAuthors();
     public function addAuthor(Author $author);

@@ -5,18 +5,18 @@
 
 namespace MMB\Meta;
 
-trait MetaCollaborateTrait
+trait MetaContributedTrait
 {
-    protected $collaborators;
+    protected $contributed;
 
     public function getAuthors()
     {
-        return $this->collaborators;
+        return $this->contributed;
     }
 
     public function addAuthor(Author $author)
     {
-        $this->collaborators[] = $author;
+        $this->contributed[] = $author;
     }
 }
  
