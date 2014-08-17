@@ -7,7 +7,6 @@ namespace MMB\Meta;
 
 interface ContributedInterface
 {
-    public function getAuthors();
-    public function addAuthor(Author $author);
+    public function getContributors();
+    public function addContributor(Author $author);
 }
- 
