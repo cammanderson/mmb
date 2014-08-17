@@ -7,11 +7,6 @@ namespace MMB\Meta;
 
 interface AuthoredInterface
 {
-    public function getAuthorUser();
-    public function getAuthorEmail();
-    public function getAuthorName();
-
-    public function setAuthorUser($user);
-    public function setAuthorEmail($email);
-    public function setAuthorName($name);
+    public function getAuthor();
+    public function setAuthor(Author $author);
 }
