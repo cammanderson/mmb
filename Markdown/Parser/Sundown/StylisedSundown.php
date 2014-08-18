@@ -25,16 +25,22 @@ class StylisedSundown extends XHTML implements MarkdownParserInterface, Highligh
     public function blockCode($code, $language)
     {
         // If we have set a highlighter
-        if(empty($this->highlighter))
-
+        if(empty($this->highlighter)) {
             return parent::completeFencedCode($code, $language);
+        }
 
         return $this->highlighter->highlight($code, $language);
     }
 
     public function parse($markdown)
     {
-        return $this->render($markdown);
+        $sd = new \Sundown\Markdown($this,
+            ['autolink' => true,
+                'space_after_headers' => true,
+                'fenced_code_blocks' => true,
+                'tables' => true
+            ]);
+        return $sd->render($markdown);
     }
 
 }
